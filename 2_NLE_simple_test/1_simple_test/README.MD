@@ -5,10 +5,10 @@ torchbeast는 IMPALA의 구현체라고 한다. 여러 버전이 있는듯하지
 python -m nle.agent.agent --num_actors 10 --batch_size 32 --unroll_length 10 --learning_rate 0.0001 --entropy_cost 0.0001 --use_lstm --total_steps 1000000  
 컴퓨터가 좋지 않아서 실행 옵션은 actor 숫자와 unroll length를 10으로 줄였고 스탭 수도 10억이 아니라 천만으로 줄였다.
 
-![asdf](./rl_result.jpg)
+![asdf](./rl_result.JPG)
 [1] 1000만 스탭의 결과_1
 
-![asdf](./test2.jpg)
+![asdf](./test2.JPG)
 [2] 1000만 스탭의 결과_2
 
 그래프는 0.95 0.05 이동평균으로 그렸다.
