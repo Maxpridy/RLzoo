@@ -6,10 +6,10 @@ python -m nle.agent.agent --num_actors 10 --batch_size 32 --unroll_length 10 --l
 컴퓨터가 좋지 않아서 실행 옵션은 actor 숫자와 unroll length를 10으로 줄였고 스탭 수도 10억이 아니라 천만으로 줄였다.
 
 ![asdf](./rl_result.JPG)
-[1] 1000만 스탭의 결과_1
+[1] 100만 스탭의 결과_1
 
 ![asdf](./test2.JPG)
-[2] 1000만 스탭의 결과_2
+[2] 100만 스탭의 결과_2
 
 그래프는 0.95 0.05 이동평균으로 그렸다.
 공식 repo에서 2억스탭까지 100을 넘을까 말까 하는걸 보면 정상적인것같다.
