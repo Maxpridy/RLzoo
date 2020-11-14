@@ -13,7 +13,7 @@ https://github.com/bodhid/MineClone-Unity
 이 환경은 어찌보면 obstacle tower env랑 비슷하다고도 할 수 있는데 기본적인 ml-agents의 예제들은 오브젝트 복제를 통해 아카데미와 통신하는 방식으로 병렬적인 학습을 할 수 있지만 이런 환경은 그렇게 하기엔 무리가 있어보인다. executable로 게임 자체를 여러개 띄우는 방법이 적절하지 않은가 싶다.
 
 3. 실험 방법  
-executable로 PPO를 이용해 학습했다.
+executable로 PPO를 이용해 학습했다.  
 실험영상 : https://www.youtube.com/watch?v=7-lRdZS0R2Y
 
 4. 실험 결과  
