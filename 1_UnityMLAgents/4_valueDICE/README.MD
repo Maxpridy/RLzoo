@@ -50,14 +50,15 @@ FoodCollector에서 몇가지 수정
 
 ## 에이전트 기획
 
-state는 몇갠지 기억은 안나는데 laser sensor 이용
-action은 (3, 3)의 출력, 각각 (noop, 앞, 뒤), (noop, 좌, 우)로 구성되어있음
-Flatten시켜서 뒤로가는 액션 빼고 6개의 액션으로 구성
-reward는 변경 없음
+state는 몇갠지 기억은 안나는데 laser sensor 이용  
+action은 (3, 3)의 출력, 각각 (noop, 앞, 뒤), (noop, 좌, 우)로 구성되어있음  
+Flatten시켜서 뒤로가는 액션 빼고 6개의 액션으로 구성  
+reward는 변경 없음  
 
 ## 데이터 생성
 
-한 에피소드는 5000step, 이 환경은 5step마다 1개의 action이 수행되므로 1000개씩 쌓임. 7000개 모아서 imitation 수행. 어느정도 수행하는걸 볼수있음
+한 에피소드는 5000step, 이 환경은 5step마다 1개의 action이 수행되므로 1000개씩 쌓임  
+7000개 모아서 imitation 수행. 어느정도 수행하는걸 볼수있음  
 
 
 ## 본격적인 valueDice 구현
