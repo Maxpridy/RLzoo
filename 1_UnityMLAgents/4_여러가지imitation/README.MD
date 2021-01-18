@@ -34,7 +34,9 @@ KL로 catboost모델을 학습한 모델이다.
 
 
 실험해봐야할것 : KL을 하면 reverse도 줄어드는가?(굳이 JS를 쓸 필요가 없는가?)  
+또, reverse를 loss로 써도 forward도 줄어드는가?
 -> 그렇다. 하지만 JS를 쓰는게 나을것같다.
+사실 처음엔 forward가 곧 CE라고 알고있었고, reverse를 써도 되는가가 궁금했는데... 
 
 
 
