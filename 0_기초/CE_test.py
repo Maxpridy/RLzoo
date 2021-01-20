@@ -34,7 +34,7 @@ print(optimizer.state_dict())
 
 
 
-for _ in range(1):
+for _ in range(10):
     input = np.array([[1 for _ in range(11)], [1 for _ in range(11)]])
     probs = model(torch.from_numpy(input).float())
 
@@ -67,7 +67,7 @@ for _ in range(1):
     loss = torch.sum(loss2)
     # - ylogx, ylogy - ylogx가 동등하다는 부분에 대해서는 이해가 간다. ylogy라는 텀은 미분하면 의미가 없기때문에..
     # 실제로 찍어보면 크기 빼고는 기울기가 동등하다. 
-    # 그 반대의 경우는 -xlogy만으론 학습이 안됨. xlogx - xlogy여야 학습이 가능하고 kl_1과 같은곳으로 수렴한다고함. 
+    # 그 반대의 경우는 -xlogy만으론 학습이 안됨. xlogx - xlogy여야 학습이 가능하고 kl_1과 같은곳으로 수렴한다고함. 기울기도 다름.
     # 간단하게 이해하면 x의 엔트로피를 최대화 한다는 텀이 추가되는것만으로 학습이 되는데... 사실 직관적으로는 이해가 잘 가지 않는다.
 
     print(probs)
@@ -75,6 +75,6 @@ for _ in range(1):
     optimizer.zero_grad()
     loss.backward()
 
-    print(model.last[0].weight.grad)
+    #print(model.last[0].weight.grad)
     
     optimizer.step()
