@@ -2,6 +2,8 @@
 
 branch 정보를 받아서 flatten화 한다.
 
+논문에서는 CMD라고 표현하더라. Convert multi-discrete actions to discrete
+
 여기서 사용한 예시는 3x3인데, [noop, 전진, 후진], [noop, 좌회전, 우회전]으로 총 액션의 수는 9가 된다.  
 이 액션들을 나열하면 [(noop, noop), (noop, 좌회전), (noop, 우회전), (전진, noop), (전진, 좌회전), (전진, 우회전), (후진, noop), (후진, 좌회전), (후진, 우회전)] 이렇게 된다.
 
