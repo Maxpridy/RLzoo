@@ -21,10 +21,6 @@ class Action:
             
         self.continuous = Continuous()
         self.discrete = action.reshape([1, -1])
-        print(self.discrete)
-        
-        import time
-        time.sleep(10000)
 
 
 class MyEnv(gym.Env):
