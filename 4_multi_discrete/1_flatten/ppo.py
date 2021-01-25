@@ -101,7 +101,7 @@ def train():
                 prob = model.pi(torch.from_numpy(s).float())
                 m = Categorical(prob)
                 a = m.sample().item()
-                print(a)
+                
                 s_prime, r, done, info = env.step(a)
 
                 model.put_data((s, a, r, s_prime, prob[a].item(), done))

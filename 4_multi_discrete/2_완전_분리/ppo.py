@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.distributions import Categorical
+import numpy as np
 
 import my_env
 
@@ -21,7 +22,7 @@ class PPO(nn.Module):
         self.data = []
         
         self.fc1   = nn.Linear(77, 256)
-        self.fc_pi = nn.Linear(256, 6)
+        self.fc_pi = nn.Linear(256, 3)
         self.fc_v  = nn.Linear(256, 1)
         self.optimizer = optim.Adam(self.parameters(), lr=learning_rate)
 
@@ -89,7 +90,8 @@ class PPO(nn.Module):
 
 def train():
     env = my_env.MyEnv(0)
-    model = PPO()
+    model1 = PPO()
+    model2 = PPO()
     score = 0.0
     print_interval = 20
 
@@ -98,25 +100,31 @@ def train():
         done = False
         while not done:
             for t in range(T_horizon):
-                prob = model.pi(torch.from_numpy(s).float())
-                m = Categorical(prob)
-                a = m.sample().item()
-                print(a)
-                s_prime, r, done, info = env.step(a)
+                prob1 = model1.pi(torch.from_numpy(s).float())
+                prob2 = model2.pi(torch.from_numpy(s).float())
+                m1 = Categorical(prob1)
+                m2 = Categorical(prob2)
+                a1 = m1.sample().item()
+                a2 = m2.sample().item()
+                
 
-                model.put_data((s, a, r, s_prime, prob[a].item(), done))
+                s_prime, r, done, info = env.step(np.array([a1, a2]))
+
+                model1.put_data((s, a1, r, s_prime, prob1[a1].item(), done))
+                model2.put_data((s, a2, r, s_prime, prob2[a2].item(), done))
                 s = s_prime
 
                 score += r
                 if done:
                     break
 
-            model.train_net()
+            model1.train_net()
+            model2.train_net()
 
-        if n_epi % 50 == 0 and n_epi != 0:
-            torch.save(model.state_dict(), f"ppo_model_{n_epi}.pt")
-            print("saved!")
-            break
+        # if n_epi % 50 == 0 and n_epi != 0:
+        #     torch.save(model.state_dict(), f"ppo_model_{n_epi}.pt")
+        #     print("saved!")
+        #     break
 
         if n_epi%print_interval==0 and n_epi!=0:
             print("# of episode :{}, avg score : {:.1f}".format(n_epi, score/print_interval))

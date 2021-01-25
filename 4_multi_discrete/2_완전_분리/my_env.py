@@ -44,7 +44,8 @@ class MyEnv(gym.Env):
             self.engine_config.set_configuration_parameters(time_scale=20.0)
             self.reset_parameters.set_float_parameter("train-mode", 1.0)
 
-        self._flattener = ActionFlattener(behavior_spec.action_spec.discrete_branches)
+        #self._flattener = ActionFlattener(behavior_spec.action_spec.discrete_branches)
+        self._flattener = None
 
     def reset(self):
         # for key, value in reset_params.items():

@@ -62,7 +62,7 @@ class MyEnv(gym.Env):
         if self._flattener is not None and type(action) == int:
             # Translate action into list
             action = np.array(self._flattener.lookup_action(action))
-
+        
         c_action = Action(action)
 
         self._env.set_actions(self.behavior_name, c_action)

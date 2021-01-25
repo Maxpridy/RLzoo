@@ -36,12 +36,11 @@ print(optimizer.state_dict())
 
 for _ in range(10):
     input = np.array([[1 for _ in range(11)], [1 for _ in range(11)]])
-    probs = model(torch.from_numpy(input).float())
+    pred = model(torch.from_numpy(input).float())
 
     print()
-    m = torch.distributions.Categorical(probs)
-    
-    x = probs
+
+    x = pred
     y = torch.tensor([[0, 0, 0.8, 0, 0.2, 0], [0, 0, 0.75, 0, 0.15, 0]], dtype=torch.float, requires_grad=False)
    
     log_x = torch.log(x+1e-7)

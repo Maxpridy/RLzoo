@@ -32,15 +32,22 @@ https://github.com/Miffyli/rl-action-space-shaping
 
 ## 위 논문에 대해서
 
-일단 Table 1이 정말 유익한 자료이다. 결국 대회나 구현에서 시도했던것이 대부분 엄청난 대규모(OpenAI와 DeepMind)를 제외하면 Discrete쪽으로 최대한 reduce해서 시도했다는 이야기이다. 
+일단 Table 1이 정말 유익한 자료이다. 결국 대회나 구현에서 시도했던것이 대부분 엄청난 대규모(OpenAI와 DeepMind)를 제외하면 Discrete쪽으로 최대한 reduce(flatten)해서 시도했다는 이야기이다. 
 
 실험이 아주 재미있는데, Tank라는 환경 세팅이 내가 시도하는 환경과 아주 유사하다. 사실 나의 목적은 MultiDiscrete 방법들간의 차이를 원하는거지만 이 논문에서는 여러가지 경우에 대해서 알아보는게 재미있다.
 
-RA, DC, CMD라는게 나오는데, RA는 discrete에서 쓸모없는 액션을 지우는것, DC는 continuous를 이산화하는것, CMD는 multidiscrete를 flatten화 시키는것을 말한다.
+RA, DC, CMD라는게 나오는데, RA는 discrete에서 쓸모없는 액션을 지우는것, DC는 continuous를 이산화하는것, CMD는 multidiscrete를 flatten화 시키는것을 말한다. 이것들은 서로 조합할 수 있다. 예를들면 CMD 적용 후 RA 적용
 
-여기서 backward와 strafe라는 말이 나오는데, backward는 후진, strafe는 좌우로 게걸음을 걷는것을 말한다. 
+여기서 backward와 strafe라는 말이 나오는데, backward는 후진, strafe는 좌우로 게걸음을 걷는것을 말한다. 용개와 부트네가 잘하는 그 걸음이다. 
 
 사실 환경에 따라서 backward나 strafe가 좋을수도 안좋을수도 있다. Get-To-Goal이 무슨 환경인지는 잘 모르겠는데, backward를 빼면 성능이 내려간다. 반면 Obstacle challenge에서는 성능이 올라간다. 이건 환경에 따라 케바케가 꽤 있을것같다.
 
-일반적으로 discrete가 multidiscrete보다 성능이 좋게 나오는것을 볼 수 있는데... 이유가 뭘까? additional action에 robust하다고 하긴 한다.
+일반적으로 discrete는 multidiscrete랑 앞서거니 뒤서거니 한다. 내가 궁금했던건 사실 branch의 갯수가 늘어날수록 어떤쪽이 유리한지인데 아무래도 거의 같은 모양이다.  multidiscrete가 additional action에 robust하다고 하긴 한다. 여기서 액션을 더하는 방식이 뭐지? multidiscrete와 discrete가 같으려면 multidiscrete에 추가하는 방식인가? 그럼 x축 액션의 갯수는 뭐지.. 이건 코드를 좀 봐야 이해가 갈거같기도 하다.
 
+
+
+## 결론?
+
+사실 multidiscrete를 사용해야 하는 상황은 많지않다. continuous를 discretized하든 multidiscrete를 flatten을 하든 위에 논문에서 말했듯이 대부분은 Discrete로 해결이 가능하다. 그렇게 많이들 해결해왔고... 그럼 무슨 의미냐?
+
+사실 이 단락을 생성할 때부터 그냥 궁금함이 컸다. 예를들면 classification에서 멀티클래스 라벨을 출력하는 모델이 있다하면(예를들면 개/고양이, 단모/장모를 동시에 판단하는 모델) 2, 2의 출력과 4의 출력이 동일한지 
