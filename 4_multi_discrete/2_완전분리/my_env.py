@@ -50,7 +50,6 @@ class MyEnv(gym.Env):
     def reset(self):
         # for key, value in reset_params.items():
         #     self.reset_parameters.set_float_parameter(key, value)
-        # self.reset_params = None # 존재 이유를 모르겠음
         self._env.reset()
         info, terminal_info = self._env.get_steps(self.behavior_name)
         self.game_over = False
