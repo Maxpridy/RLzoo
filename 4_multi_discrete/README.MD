@@ -18,15 +18,16 @@ https://github.com/Miffyli/rl-action-space-shaping
 방법을 분류해보자면
 
 1. flatten
-2. 완전 분리
-3. 조건부
-4. Categorical
-5. Multi-Discrete
+2. 완전분리
+3. MultiDiscrete
+4. 독립
+5. 조건부
+6. hierarchical
 
 이정도로 나눠볼 수 있을것같다.
 
 실험에 쓰이는 코드는 노승은님의 ppo 구현체를 기반으로 사용했다.
-여기선 환경은 MLAgent로 액션은 3, 3개로 FoodCollector 쓰던걸 가져와서 사용할 예정이다.
+여기선 환경은 MLAgent로 액션은 branch가 2개이고 각각 action space가 3, 3인 FoodCollector 쓰던걸 가져와서 사용할 예정이다.
 [noop, 전진, 후진], [noop, 좌회전, 우회전] 이렇게 조합된다.
 
 
@@ -57,4 +58,4 @@ MultiDiscrete에서도 마찬가지이다. obstower를 예로 들면 뒤로가�
 
 사실 multidiscrete를 사용해야 하는 상황은 많지않다. continuous를 discretized하든 multidiscrete를 flatten을 하든 위에 논문에서 말했듯이 대부분은 Discrete로 해결이 가능하다. 그렇게 많이들 해결해왔고... 그럼 무슨 의미냐?
 
-사실 섬세하게 제약을 건다면 굳이 Discrete를 쓰지 않을 이유는 없는것같다. 그 이유는 위의 논문의 table1에서 충분히 보여준다고 생각한다. 하지만 그 모든 관계에 대해서 파악하기 어려울정도로 branch가 많고 복잡해진다면... 예를들자면 OpenAI Five와 같은 경우가 아닐까? 만약 OpenAI Five에서 Flatten후 RA를 진행한다고 가정하면 어떤 액션을 남기고 어떤 액션을 지울것인지 판단하기가 쉬울까?(위의 categorical한 구현이라고 생각됨. action의 종류->선택된 종류의 액션에 대한 multidiscrete) 저쪽으로 이동하면서 스킬쓸일이 없다고 단언할 수 있을까?
+사실 섬세하게 제약을 건다면 굳이 Discrete를 쓰지 않을 이유는 없는것같다. 그 이유는 위의 논문의 table1에서 충분히 보여준다고 생각한다. 하지만 그 모든 관계에 대해서 파악하기 어려울정도로 branch가 많고 복잡해진다면... 예를들자면 OpenAI Five와 같은 경우가 아닐까? 만약 OpenAI Five에서 Flatten후 RA를 진행한다고 가정하면 어떤 액션을 남기고 어떤 액션을 지울것인지 판단하기가 쉬울까?(위의 hierarchical한 구현이라고 생각됨. action의 종류->선택된 종류의 액션에 대한 multidiscrete) 저쪽으로 이동하면서 스킬쓸일이 없다고 단언할 수 있을까?
