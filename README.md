@@ -11,3 +11,4 @@
 2. NLE로 간단한 여러가지 테스트
 3. gfootball 환경(캐글)에서 7등 이기기
 4. multi-discrete에 대한 정리
+5. multi-process에 대한 정리
