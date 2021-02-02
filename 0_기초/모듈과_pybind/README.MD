@@ -1,18 +1,24 @@
 # 모듈과 pybind11 : 2021.02.02
 
-이 단락에선 파이썬 모듈 시스템에 대해 알아보고, pybind11로 cpp를 간편하게 python 모듈로 만드는것들을 테스트해보자
+## 이 단락을 생성한 이유
 
-참고자료  
-https://docs.python.org/3/extending/building.html
+torchbeast를 보다가 넘어왔다. 언제곤 꼭 cpp를 라이브러리로 사용해보자는 생각을 했었지만 swig나 다른 방법들은 번잡해보여서 하지 않았었는데 사실 다 핑계였고 귀찮아서였다. 이번 기회에 조금 다잡아보자.
+
+## 목적
+
+이 단락에선 파이썬 모듈 시스템에 대해 알아보고, pybind11로 cpp를 간편하게 python 모듈로 만드는것들을 테스트해보자.
 
 사실 이 부분은 굉장히 안일하게 넘어가는 경우가 많았는데 이번 기회에 실습으로 충분히 알게 될면 좋을것이다.
 
 겸사겸사 pybind11로 간단한 모듈을 만들어서 파이썬에서 불러오는 테스트까지 실행해보자.
 
+참고자료  
+https://docs.python.org/3/extending/building.html
+
 
 ## python setup.py install/build/test/...
 
-파이썬의 모듈은 기본적으로 setup.py를 통해서 패키지에 대한 여러가지 관리를 할 수 있도록 되어있다. 그 내부의 구현에는 아래에서 다룰 setuptools를 사용한다.
+파이썬의 모듈은 기본적으로 setup.py를 통해서 패키지에 대한 여러가지 관리를 할 수 있도록 되어있다(사실 파이썬의 많은 부분들이 그렇듯이 약속일 뿐이다. 이름이 굳이 setup.py가 아니여도 되긴된다). 그 내부의 구현에는 아래에서 다룰 setuptools를 사용한다.
 
 install이든 build든 특별할것 없는 python의 경우엔 파이썬 파일들이 단순히 묶이게 되고, Extension으로 cpp를 묶는 경우엔 동적 라이브러리인 .so/.pyd가 생성되게 되고 이것을 import해서 사용하는 방식이 된다.
 
@@ -28,8 +34,8 @@ install이든 build든 특별할것 없는 python의 경우엔 파이썬 파일�
 https://setuptools.readthedocs.io/en/latest/setuptools.html
 
 
-
 ## 단순 python
+(단순_python 폴더 참고)
 
 말 그대로 정말 단순하게 파이썬으로 만들어본것이다. 
 
@@ -46,13 +52,10 @@ t.v # 1
 
 이 부분에서 작성한건 사실상 setup.py가 다인데, 내용을 보면 특별할것은 없다. 
 
-여기까진 쉽다. 어렴풋이 알고있기도 했고... 
+기억해둘만한 점은 this_is_package_name_wow의 하위 폴더들은 포함이 안된다.
+
+여기까진 쉽다.
 
 
 ## 단순 cpp
-
-
-
-
-
 
