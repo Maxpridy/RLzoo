@@ -5,3 +5,5 @@
 - model_encode : 모델을 직접 py파일에 넣어서 여는방법에 대한 테스트
 - CE_KL_test : cross entropy와 KL에 대해 직접 테스트
 - multiclass_test : 멀티클래스에 대해 학습되는 양상 체크
+- torch_cpp_extension : torch로 만드는 cpp extension
+

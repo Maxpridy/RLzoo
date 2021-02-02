@@ -1,0 +1,58 @@
+# 모듈과 pybind11 : 2021.02.02
+
+이 단락에선 파이썬 모듈 시스템에 대해 알아보고, pybind11로 cpp를 간편하게 python 모듈로 만드는것들을 테스트해보자
+
+참고자료  
+https://docs.python.org/3/extending/building.html
+
+사실 이 부분은 굉장히 안일하게 넘어가는 경우가 많았는데 이번 기회에 실습으로 충분히 알게 될면 좋을것이다.
+
+겸사겸사 pybind11로 간단한 모듈을 만들어서 파이썬에서 불러오는 테스트까지 실행해보자.
+
+
+## python setup.py install/build/test/...
+
+파이썬의 모듈은 기본적으로 setup.py를 통해서 패키지에 대한 여러가지 관리를 할 수 있도록 되어있다. 그 내부의 구현에는 아래에서 다룰 setuptools를 사용한다.
+
+install이든 build든 특별할것 없는 python의 경우엔 파이썬 파일들이 단순히 묶이게 되고, Extension으로 cpp를 묶는 경우엔 동적 라이브러리인 .so/.pyd가 생성되게 되고 이것을 import해서 사용하는 방식이 된다.
+
+기타 test, develop 등이 있는데 필요할때마다 알아보도록 하자
+
+## setuptools
+
+파이썬에서는 setuptools 패키지로 프로젝트를 관리할 수 있다. 이것을 이용해서 다른사람이 이 모듈을 쉽게 설치할수도 있고, 빌드와 테스트도 할 수 있다.
+
+실습으로 가면서 더 이야기해보자. 여기선 굳이 README를 세부적으로 나누지 않고 여기서 계속 이야기하겠다.
+
+참고자료  
+https://setuptools.readthedocs.io/en/latest/setuptools.html
+
+
+
+## 단순 python
+
+말 그대로 정말 단순하게 파이썬으로 만들어본것이다. 
+
+저 폴더에서 python setup.py install 혹은 pip install -e .를 치고나서
+(파이썬 3.8을 권장)
+
+```
+from this_is_package_name_wow.import_this_one import Test1
+
+t = Test1()
+t.v # 1
+```
+를 하게되면 모듈이 불러와진다. 내 인터프리터의 경로에 이 모듈이 설치가 된것이다. 
+
+이 부분에서 작성한건 사실상 setup.py가 다인데, 내용을 보면 특별할것은 없다. 
+
+여기까진 쉽다. 어렴풋이 알고있기도 했고... 
+
+
+## 단순 cpp
+
+
+
+
+
+
