@@ -4,7 +4,7 @@
 
 
 
-## test 내역
+## zoo 목록
 
 0. 강화학습, 딥러닝의 기초가 되는 구현
 1. Unity ML-agents 관련
@@ -12,3 +12,10 @@
 3. gfootball 환경(캐글)에서 7등 이기기
 4. multi-discrete에 대한 정리
 5. multi-process에 대한 정리
+
+
+## 현재 탐색중인 위치(stack)
+
+/1. 모던 cpp  
+/1. 기초 - 모듈과 pybind  
+/5. 멀티프로세스 - 토치비스트  
