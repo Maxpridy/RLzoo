@@ -17,6 +17,10 @@ IMPALA는 보통 비동기 actor들과 (여러) learner로 구성된다. 그 통
 https://velog.io/@litien/GIL-Java%EC%97%90%EB%8A%94-%EC%97%86%EB%8D%98%EB%8D%B0  
 이 글이 내 궁금함을 조금은 풀어준것 같다. 
 
+pybind11에 보면 gil.h라는 raii를 보조하는 파일이 있다. 
+# 작성중
+
+
 ## v-trace
 
 한번도 정리한적이 없는것같아서 vtrace에 대해서도 약간 정리하고 가면 좋을것 같다. 기본적으로 vtrace라는게 왜 존재하냐면 비동기 actor-learner 상황에서 정책의 차이가 발생하기 때문이다. actor는 단순히 행동을 하는 역할이기 때문에 보통 learner가 좀 더 학습의 측면에서 앞서게 된다. 이 차이를 극복하기 위해 vtrace나 이런 비슷한 개념을 사용하게 된다. 
@@ -68,8 +72,6 @@ cpp thread로 환경을 생성하는데 이쪽을 Server라고 부른다. 환경
 아래 문단이 중요한데 그래서 GIL을 극복하기 위해서 무슨 방법을 쓸지에 대한 방법들을 이야기하고있다. 하지만 여러 통신이나 다른 방법들 중 오버헤드가 적은 방법이 사실상 별로 없다고 말하는듯 하다.
 
 monobeast는 소켓통신과 shared memory로 해결했고, polybeast에서는 RPC call과 C++ thread를 사용했다고 한다. 아마도 말하는걸로 봐선 polybeast가 최고의 방법이라고 생각하는듯 하다. 나도 그래보인다.
-
-
 
 
 

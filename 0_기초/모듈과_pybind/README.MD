@@ -76,4 +76,3 @@ https://github.com/pybind/python_example
 torchbeast에는 nest라는 간단한 모듈이 있는데 이것과 polybeast를 좀 살펴봤다.
 
 안되겠어서 모던cpp 단락생성함 일단 그쪽으로
-

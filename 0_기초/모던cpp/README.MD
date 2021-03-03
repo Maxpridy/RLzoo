@@ -12,7 +12,5 @@
 
 이 단락에서는 모던 cpp에 대한 궁금함들을 기록해보자.
 
-
-
-
-
+너무 큰 부분이 될것같아 따로 repo 만들었음  
+https://github.com/Maxpridy/mastering_moderncpp
