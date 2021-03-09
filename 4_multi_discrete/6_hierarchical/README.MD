@@ -1,8 +1,10 @@
 # hierarchical
 
-이건 사실 MultiDiscrete는 아니다. 엄밀하게 말하면 하나만 고르는것이다.
+이건 사실 MultiDiscrete는 아니다. 대분류 하나 고르고, 그 속의 소분류를 하나 고르는 느낌?
 
-이것도 노승은님께 감사를 드린다. paris팀의 gfootball 구현에서 본것인데, action과 moving으로 나누어졌지만 둘다 하는것이 아닌 하위 액션인 moving만 하는것이다.
+이것은 약간 알파스타에서 autoregressive랑 비슷하게 느껴진다. 이건 feature가 다음단계로 계속 전달되는 느낌에 가깝지만 어찌보면 이런식의 구현자체가 유사한 느낌이 아닌가싶다.
+
+이것도 노승은님께 감사를 드린다. paris팀의 gfootball 구현에서 본것인데, action과 moving으로 나누어졌지만 둘다 하는것이 아닌 하위 액션인 moving만 하는것이다. 정확히 말하면 autoregressive는 아니다.
 
 paris팀 구현도 독립을 가정하는것 같은데 이 부분은 좀 어렵다... 사건의 관계는 좀처럼 파악하기 어렵다.
 
