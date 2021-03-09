@@ -16,9 +16,7 @@ We’ve mentioned that DDPG is an off-policy algorithm: this is as good a point 
 -출처 openai spinningup DDPG 설명 중
 
 먼저 DDPG의 behavior policy를 보자. mu(s)+noise()가 액션이 된다. 하지만 target policy에선 노이즈가 없다. 왜 다른가? exploration을 해야하니까.  
-위 설명은 왜 off policy로 작동해도 되는가? 에 대한 설명이다. DDPG는 continuous action이기 때문에 discrete action space DQN과는 조금 다른 경우라고 볼 수 있다.
-
-여기까지 오면 off policy가 무엇인지 이제는 알 수 있다. value 기반의 방법들은 behavior policy에서는 exploration을 포함하고, target policy에서는 순수한 policy의 아웃풋을 추정해 나가면서 학습이 되는것이다. 이것은 Q와 SARSA에서도 마찬가지로 비교해볼 수 있다.
+위 설명은 왜 DDPG가 off policy로 작동해도 되는가? 에 대한 설명이다. DDPG는 continuous action이기 때문에 discrete action space DQN과는 조금 다른 경우라고 볼 수 있다.
 
 우리가 일반적으로 보아왔듯이 transition에 대한 데이터(s, a, r, s', d)를 쌓아나감으로써 우린 그 데이터를 이후에 학습할 수 있게된다. 왜 학습이 가능한가? 위 DDPG에서 설명한것처럼 
 1. 그 튜플이 사용되었는지 신경쓰지 않고
@@ -26,6 +24,7 @@ We’ve mentioned that DDPG is an off-policy algorithm: this is as good a point 
 3. transition 후에 일어나는 일도 신경쓰지 않는다.  
 
 왜냐면 우리가 목표로 하는건 벨만 식을 만족시키는 Q값을 학습시키는것이고, 저 데이터만으로도 식을 만족시킬 수 있기 때문이다. 아래 식을 보면 우리가 과거 데이터를 사용한다고 해도 문제가 될것은 없다. 거기에 maxQ와 deterministicQ는 현재로써 최고의 목표를 지정해준다.
+
 ```
 # DQN의 타겟식
 target = r + gamma * q_target(s_prime).max(1)[0].unsqueeze(1) * done_mask
@@ -34,7 +33,10 @@ target = r + gamma * q_target(s_prime).max(1)[0].unsqueeze(1) * done_mask
 # DDPG의 타겟식
 target = r + gamma * q_target(s_prime, mu_target(s_prime)) * done_mask
 ```
-지금까지 말한것은 사실 off policy니까 experience replay기법을 쓸 수 있다는것처럼 들리지만 사실 value기반이니까 쓸 수 있다가 맞다고 본다.
+
+여기까지 오면 off policy가 무엇인지 이제는 알 수 있다. value 기반의 방법들은 behavior policy에서는 exploration을 포함하고, target policy에서는 순수한 policy의 아웃풋을 추정해 나가면서 학습이 되는것이다. 이것은 Q와 SARSA에서도 마찬가지로 비교해볼 수 있다.
+
+지금까지 말한것은 off policy니까 experience replay기법을 쓸 수 있다는것처럼 들리지만 사실 value기반이니까 쓸 수 있다가 맞다고 본다. 좀 더 정리해보자면 'value기반은 off policy가 자연스럽고, policy기반은 on policy가 자연스럽다' 정도로 이야기 할 수 있을것같다.
 
 그럼 policy 기반은 왜 일반적으로 불가능한가? 
 
