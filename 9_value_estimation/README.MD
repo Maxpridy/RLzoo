@@ -18,6 +18,10 @@ upgo는 위에서 0.9로 설정한 tdlambda와는 반대의 철학이라고 볼 
 
 lux 1위는 위에 말했듯이 td_lambda에서 lmb를 0.9로 한것과 upgo를 동시에 loss에 포함했다. 이게 무슨 의미일까? 수식을 찬찬히 살펴보면 양쪽의 철학이 느껴진다. 전자는 실제 reward를 더 참고할것이고, 후자는 vf를 더 참고할것이라는것이다. 이는 양쪽의 장점을 다 가져가겠다는 이야기가 아닐까 싶다. 
 
+한문장으로 요약하면,  
+td(MC) : 샘플을 더 보겠다 vs upgo(TD) : 내가(v) 아는것, 아는것중에 더 좋았던것을 더 배우겠다.  
+이렇게 약간 상호보완적인 학습을 할 수 있는 각을 노릴수 있는게 아닌가싶다.
+
 실제로 학습을 시켜보면 2번 upgo는 단일로는 약간 불안한 느낌이 든다. 역시 문제가 쉽다보니 뭐가 더 낫다는 실험까지는 어렵지만 일단 3번 코드처럼 섞으면 더 잘 학습이 되는건 확실하다. 정말 안정적인 느낌이 든다.
 
-upgo는 알파스타 논문에서 처음으로 나온걸로 알고있다. Grandmaster level in starcraft ii using multi-agent reinforcement learning <- 아마 이 논문일텐데, 사실 이 논문에서도 별 설명은 없고 '현재와 이전 폴리시가 매치되지 않을 가능성이 높아서 이렇게 여러 방법을 섞어서 off policy적인 방법을 위해 사용했다' 라고만 강조되어있다. 
+알파스타 논문도 이러한 value function을 골고루 사용한걸로 알고있다. upgo는 알파스타 논문에서 처음으로 나온걸로 알고있는데 아마 Grandmaster level in starcraft ii using multi-agent reinforcement learning <- 이 논문일텐데, 사실 이 논문에서도 별 설명은 없고 '(replayed experience를 비동기적 적용했다는 이야기 후에) 현재와 이전 폴리시가 매치되지 않을 가능성이 높아서 이렇게 여러 방법을 섞어서 off policy적인 방법을 위해 사용했다' 라고만 강조되어있다. upgo는 new self imitation algorithm이라고 적혀있는데 위에서 말한 철학이 담겨있는 이름인것같다. 
