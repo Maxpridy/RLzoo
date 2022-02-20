@@ -25,3 +25,8 @@ td(MC) : 샘플을 더 보겠다 vs upgo(TD) : 내가(v) 아는것, 아는것중
 실제로 학습을 시켜보면 2번 upgo는 단일로는 약간 불안한 느낌이 든다. 역시 문제가 쉽다보니 뭐가 더 낫다는 실험까지는 어렵지만 일단 3번 코드처럼 섞으면 더 잘 학습이 되는건 확실하다. 정말 안정적인 느낌이 든다.
 
 알파스타 논문도 이러한 value function을 골고루 사용한걸로 알고있다. upgo는 알파스타 논문에서 처음으로 나온걸로 알고있는데 아마 Grandmaster level in starcraft ii using multi-agent reinforcement learning <- 이 논문일텐데, 사실 이 논문에서도 별 설명은 없고 '(replayed experience를 비동기적 적용했다는 이야기 후에) 현재와 이전 폴리시가 매치되지 않을 가능성이 높아서 이렇게 여러 방법을 섞어서 off policy적인 방법을 위해 사용했다' 라고만 강조되어있다. upgo는 new self imitation algorithm이라고 적혀있는데 위에서 말한 철학이 담겨있는 이름인것같다. 
+
+---
+
+이후 다른 밸류기반의 방법들을 MC와 TD의 관점에서 더 적을 수 있으면 적길바람
+
